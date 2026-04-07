@@ -43,8 +43,9 @@ def ide_read_buffer() -> str:
     script = (
         "buf = nvim.current.buffer\n"
         "name = buf.name or 'Unnamed Buffer'\n"
+        "cursor = nvim.current.window.cursor\n"
         "text = '\\n'.join(buf[:])\n"
-        "print(f'--- Active Neovim Buffer: {name} ---\\n{text}\\n--- End of Buffer ---')\n"
+        "print(f'--- Active Neovim Buffer: {name} (Cursor: Line {cursor[0]}, Col {cursor[1]}) ---\\n{text}\\n--- End of Buffer ---')\n"
     )
     return run_nvim_script(script)
 
